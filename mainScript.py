@@ -11,7 +11,7 @@ import time
 import copy
 import os.path
 from load_measurements import *
-
+    
 #start mainscript
 """
 -----------------------------
@@ -48,7 +48,7 @@ while True:
     """
     if choice == 1: #define the filename you want to input and load the data
         while choice == 1:
-            filename = str(raw_input("\nPlease enter the name of the file you want to load: ")) #input filename
+            filename = str(input("\nPlease enter the name of the file you want to load: ")) #input filename
             if os.path.isfile(filename):
                 fileBool = True
             elif filename.lower() == "return":
