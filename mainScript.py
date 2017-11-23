@@ -48,7 +48,7 @@ while True:
     """
     if choice == 1: #define the filename you want to input and load the data
         while choice == 1:
-            filename = str(input("\nPlease enter the name of the file you want to load: ")) #input filename
+            filename = str(input("Please enter the name of the file you want to load: ")) #input filename
             if os.path.isfile(filename):
                 fileBool = True
             elif filename.lower() == "return":
@@ -80,8 +80,8 @@ while True:
                             outputLoad = load_measurements(filename, fmode)
                             stop = time.time() - start #calculate loadtime
                             print("Data file loaded!\nLoad time: {:f} seconds.\n============================\n".format(stop)) #write loading time
-                            databackup = np.copy(outputLoad[0]) #create backups for reset option
-                            tvecbackup = np.copy(outputLoad[1])
+                            tvecbackup = np.copy(outputLoad[0]) #create backups for reset option
+                            databackup = np.copy(outputLoad[1])
                             choice = -1
                             menuBool = True
                             break
