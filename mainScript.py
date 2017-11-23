@@ -15,7 +15,7 @@ from load_measurements import *
 #start mainscript
 """
 -----------------------------
-MENU LAYER 0 - Main menu
+MENU LAYER 0 - Open main menu
 -----------------------------
 """
 welcome = "\n============================\nWelcome!\n============================\n"
@@ -28,7 +28,7 @@ while True:
         choice = 0
     while not(np.any(choice == np.arange(len(mainMenu))+1)):
         try:
-            choice = float(input("Please choose the number of a menu item: ")) #Choose in the menu. 
+            choice = float(input("Please choose the number from the menu item: ")) #Choose in the menu. 
             if choice < 0:
                 raise ValueError #raise a value error if input is negative
             else:
@@ -67,20 +67,20 @@ while True:
                     for i in range(len(fmodeMenu)):
                         print("{:d}. {:s}".format(i+1, fmodeMenu[i])) #print the fmode menu
                     try:
-                        fmodeOption = int(input("\nPlease specify the number corresponding to the method of treatment for corrupted measurements: ")) #input fmode
+                        fmodeOption = int(input("\nPlease specify the number corresponding to the method of treatment for corrupted measurements: ")) #user input for fmode
                         if choice < 0:
                             raise ValueError #raise a value error if input is negative
                         else:
                             pass
-                        fmode_index = np.arange(len(fmodeMenu)-1)+1
+                        fmode_index = np.arange(len(fmodeMenu)-1)+1 #Make an index of the fmode options
                         if np.any(fmode_index == fmodeOption): #if the user chooses one of the fmode options, execute that command
-                            fmode = fmodeMenu[(fmodeOption-1)]
+                            fmode = fmodeMenu[(fmodeOption-1)] #the chosen fmode 
                             start = time.time() #make a timestamp before loading data
                             print("\n============================\nfmode: '" + fmode + "':\nOm Nom Nom...\n")
                             outputLoad = load_measurements(filename, fmode)
                             stop = time.time() - start #calculate loadtime
                             print("Data file loaded!\nLoad time: {:f} seconds.\n============================\n".format(stop)) #write loading time
-                            databackup = np.copy(outputLoad[0])
+                            databackup = np.copy(outputLoad[0]) #create backups for reset option
                             tvecbackup = np.copy(outputLoad[1])
                             choice = -1
                             menuBool = True
