@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import time
 import copy
-#from load_measurement import *
+from load_measurements import *
 
 #start mainscript
 """
@@ -46,6 +46,8 @@ while True:
             except NameError:
                 print("\nThe file is not found. Please check if your typed correctly or if the file exists in the folder.\n*TIP* Remember the extention '.csv' when writing the filename")
                 fileBool = False
+            except IOError:
+                print("\nIt does not look like your file is present in the folder, chap.\nEither you did a typo or the file is not in your folder...\n*TIP* Remember the '.csv' extenstion of your filename.")
             """
             -----------------------------
             MENU LAYER 2 - fmode Menu
@@ -63,11 +65,11 @@ while True:
                             fmode = fmodeMenu[(fmodeOption-1)]
                             start = time.time() #make a timestamp before loading data
                             print("\n" + fmode + ":\nOm Nom Nom...\n")
+                            outputLoad = load_measurements(filename, fmode)
                             stop = time.time() - start #calculate loadtime
                             print("Data file loaded!\nLoad time: {:f} seconds.\n".format(stop)) #write loading time
-                            #load_measurement(filename, fmode)
-                            #databackup = np.copy(data)
-                            #tvecbackup = np.copy(tvec)
+                            databackup = np.copy(outputLoad[0])
+                            tvecbackup = np.copy(outputLoad[1])
                             choice = -1
                             break
                         elif fmodeOption == len(fmodeMenu): #if the user chooses Return, break the while loop

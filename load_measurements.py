@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import time
 def load_measurements(filename, fmode):
-    tim=time.time()
+    fmode = fmode.lower()
     matrix=pd.read_csv(filename, header=None)
     matrix=np.array(matrix)        
     errormatrix=np.where(matrix==-1)
@@ -37,5 +37,4 @@ def load_measurements(filename, fmode):
     #split tvec into NX6 tvec matrix and NX4 
     tvec=matrix[:,[0,1,2,3,4,5]]
     data=matrix[:,[6,7,8,9]]
-    print(time.time()-tim)
     return (tvec, data)
