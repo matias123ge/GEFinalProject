@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import time
 import copy
+import os.path
 from load_measurements import *
 
 #start mainscript
@@ -27,12 +28,18 @@ while True:
     while not(np.any(choice == np.arange(len(mainMenu))+1)):
         try:
             choice = float(input("Please choose the number of a menu item: ")) #Choose in the menu. 
+            if choice < 0:
+                raise ValueError #raise a valueerror if input is negative
+            else:
+                pass
         except ValueError:
             print("Wow there, cowboy! Please select a valid option from the menu.") #error message for invalid input
             choice = 0
         except SyntaxError:
             print("Please give me an input...")
             choice = 0
+        except NameError:
+            print("Wow there, cowboy! Please select a valid option from the menu.")
     """
     -----------------------------
     MENU LAYER 1 - Choose file name
@@ -40,14 +47,14 @@ while True:
     """
     if choice == 1: #define the filename you want to input and load the data
         while choice == 1:
-            try:
-                filename = str(raw_input("\nPlease enter the name of the file you want to load: ")) #input filename
+            filename = str(raw_input("\nPlease enter the name of the file you want to load: ")) #input filename
+            if os.path.isfile(filename):
                 fileBool = True
-            except NameError:
-                print("\nThe file is not found. Please check if your typed correctly or if the file exists in the folder.\n*TIP* Remember the extention '.csv' when writing the filename")
+            elif filename.lower() == "return":
+                break
+            else:
                 fileBool = False
-            except IOError:
-                print("\nIt does not look like your file is present in the folder, chap.\nEither you did a typo or the file is not in your folder...\n*TIP* Remember the '.csv' extenstion of your filename.")
+                print("\nThat file is invalid. Please try again!\nYou can also return to the main menu simply by typing 'return'.\n \n*TIP* Remember the '.csv' extenstion in your filename!")
             """
             -----------------------------
             MENU LAYER 2 - fmode Menu
@@ -81,6 +88,8 @@ while True:
                         print("\nERROR DETECTED!\nPlease select a valid option from the menu.")
                     except SyntaxError:
                         print("\nERROR DETECTED!\nYou have to choose something...\n")
+                    except NameError:
+                        print("\nERROR DETECTED!\nThe option you chose is invalid.")
                     #except FileNotFoundError:
                         #print("\nIt does not lookj like your file is present in the folder, chap.\nEither you did a typo or the file is not in your folder...\n*TIP* Remember the '.csv' extenstion of your filename.")
             else:
