@@ -9,4 +9,5 @@ import numpy as np
 import pandas as pd
 
 data = pd.read_csv("testdata1.csv", header=None)
+    matrix=pd.io.parser.read_csv(data)
 print(data)
