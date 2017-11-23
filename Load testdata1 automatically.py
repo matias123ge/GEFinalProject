@@ -8,5 +8,5 @@ Created on Thu Nov 23 14:06:41 2017
 import numpy as np
 import pandas as pd
 
-data = pd.read_csv("testdata1.csv")
+data = pd.read_csv("testdata1.csv", header=None)
 print(data)
