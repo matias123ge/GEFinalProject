@@ -30,6 +30,9 @@ while True:
         except ValueError:
             print("Wow there, cowboy! Please select a valid option from the menu.") #error message for invalid input
             choice = 0
+        except SyntaxError:
+            print("Please give me an input...")
+            choice = 0
     """
     -----------------------------
     MENU LAYER 1 - Choose file name
@@ -58,7 +61,10 @@ while True:
                         fmode_index = np.arange(len(fmodeMenu)-1)+1
                         if np.any(fmode_index == fmodeOption): #if the user chooses one of the fmode options, execute that command
                             fmode = fmodeMenu[(fmodeOption-1)]
-                            print(fmode + "\n")
+                            start = time.time() #make a timestamp before loading data
+                            print("\n" + fmode + ":\nOm Nom Nom...\n")
+                            stop = time.time() - start #calculate loadtime
+                            print("Data file loaded!\nLoad time: {:f} seconds.\n".format(stop)) #write loading time
                             #load_measurement(filename, fmode)
                             #databackup = np.copy(data)
                             #tvecbackup = np.copy(tvec)
@@ -71,6 +77,8 @@ while True:
                             raise ValueError
                     except ValueError:
                         print("\nERROR DETECTED!\nPlease select a valid option from the menu.")
+                    except SyntaxError:
+                        print("\nERROR DETECTED!\nYou have to choose something...\n")
                     #except FileNotFoundError:
                         #print("\nIt does not lookj like your file is present in the folder, chap.\nEither you did a typo or the file is not in your folder...\n*TIP* Remember the '.csv' extenstion of your filename.")
             else:
