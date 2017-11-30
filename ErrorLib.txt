@@ -3,3 +3,5 @@ Please give me an input...
 \nERROR DETECTED!\nThere is an issue with the SYNTAX!\nPlease use letters in the english alphabet\n
 \nERROR DETECTED!\nThe option you chose is invalid.
 \nERROR DETECTED!\nPlease select a valid option from the menu.
+\nThat file is invalid. Please try again!
+\nPlease load data first!\n

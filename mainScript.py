@@ -130,6 +130,31 @@ while True:
     elif choice == 4:
         if menuBool == True:
             print("Passed.")
+            """
+            -----------------------------
+            MENU LAYER 2 - Visualization menu
+            -----------------------------
+            """
+            while True:
+                vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
+                for i in range(len(vOptArr)):
+                    print("{:d}. {:s}".format(i+1, vOptArr[i])) #print visualization menu
+                try:
+                    vOption = int(input("Please select the number corresponding to your desired visualization: "))
+                    if vOption < 0:
+                        raise ValueError
+                    else:
+                        pass
+                    if vOption == 1:
+                        print("\nPrints a diagram for each zone seperately!") #still working on this!
+                    elif vOption == 2:
+                        print("\nPrints a diagram for all zones comebined!") #still working on this
+                    elif vOption == 3: #go to main menu
+                        break
+                    else:
+                        print("\nThat option number is not valid!")
+                except ValueError:
+                    print("\nThat option number is not valid!")
             #do something entirely differnet
         else:
             print("\nPlease load data first!\n")
