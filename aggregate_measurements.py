@@ -8,8 +8,11 @@ Created on Thu Nov 23 18:03:08 2017
 def aggregate_measurements(tvec,data,period):
     period=period.lower()
     if period=="hour":
+        shour=user.input("Enter a time")
         for i in range (len(tvec)-1):
-            if tvec[i:3]==tvec
+            if tvec[:,i]==shour:
+                
+                
     elif period=="day":
         asdfsaf
     elif period=="month":
