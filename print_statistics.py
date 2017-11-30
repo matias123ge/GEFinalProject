@@ -6,8 +6,8 @@ Created on Thu Nov 30 13:43:42 2017
 """
 import pandas as pd
 def print_statistics(data):
-    Rownames=["Zone 1","Zone 2","Zone 3","Zone 4","All zones"]
-    Columnames=["Minimum","1. quart.","2. quart.","3. Quart","Maximum"]
+    Rownames=["Zone 1   ||","Zone 2   ||","Zone 3   ||","Zone 4   ||","All zones||"]
+    Columnames=[np.array(["Minimum","1. quart.","2. quart.","3. quart.","Maximum"]),np.array(["========","=========","=========","=========","========="])]
     dataT=data.T
     alldata=np.sum(dataT,axis=0)
     Table1=np.array([0,0,0,0,0])
@@ -48,4 +48,17 @@ def print_statistics(data):
     Tablevalues=np.vstack((Table1,Table2,Table3,Table4,Table5))
     Table=pd.DataFrame(Tablevalues,index=Rownames,columns=Columnames)
     print(Table)
+    
+    
+    if aggregation=="Consumption per minute":#no aggregation
+        print("\n=========================\nunit=Watt-hour\ntimescale=Consumption/min\n=========================")
+    elif aggregation=="Consumption per hour":
+        print("unit=kWh\ntimescale=Consumption/hour")
+    elif aggregation=="Consumption per day":
+        print("unit=kWh\ntimescale=Consumption/day")
+    elif aggregation=="Consumption per month":
+        print("unit=kWh\ntimescale=Consumption/month")
+    elif aggregation=="Hour-of-day consumption":
+        print("unit=kWh\ntimescale=average hourly consumption")
+    
     return
