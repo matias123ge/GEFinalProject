@@ -20,7 +20,8 @@ MENU LAYER 0 - Open main menu
 """
 welcome = "\n============================\nWelcome!\n============================\n"
 print(welcome.center(80))
-menuBool = False #make the user unable to do a function without loading data
+menuBool = False #checks if data is loaded
+aggBool = 1 #checks which aggregation is active
 mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw files", "Reset data", "Quit"]) #define options
 while True:
     for i in range(len(mainMenu)):
@@ -49,8 +50,8 @@ while True:
     if choice == 1: #define the filename you want to input and load the data
         while choice == 1:
             filename = str(input("Please enter the name of the file you want to load: ")) #input filename
-            if os.path.isfile(filename):
-                fileBool = True
+            if os.path.isfile(filename): #determine whether the file exists
+                fileBool = True #a variable that tells whether the file exists
             elif filename.lower() == "return":
                 break
             else:
@@ -155,7 +156,7 @@ while True:
                         print("\nThat option number is not valid!")
                 except ValueError:
                     print("\nThat option number is not valid!")
-            #do something entirely differnet
+            #do something entirely different
         else:
             print("\nPlease load data first!\n")
             pass
