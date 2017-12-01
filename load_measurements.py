@@ -28,15 +28,20 @@ def load_measurements(filename, fmode):
                 matrix[x[i],y[i]]=matrix[x[i]-1,y[i]]
             
     elif fmode=="backward fill" : #filters data appropriately, if fmode="backward fill"
-        if np.any(matrix[len(matrix)-1,:]==-1): #checks if the final row contains any corrupted elements
-            matrix=np.delete(matrix,errormatrix[0],axis=0)#if so, deletes all rows with corrupted elements
+        #Flip matrix, do forwards fill
+        #Check for 1st value if -1
+        matrix=np.flipud(matrix)
+        if np.any(matrix[0,:]==-1):#checks if the first row contains any corrupted elements
+            matrix=np.delete(matrix,errormatrix[0],axis=0)  #if so, deletes all rows with corrupted elements
             print("First data input was corrupt, all corrupt inputs have been deleted.")
             pass
         else:
             for i in range (len(x)):
-                 #replaces corrupted values ("-1") with the next valid value from the same column
-                matrix[x[i],y[i]]=matrix[x[i]+1,y[i]]
-                
+                #replaces corrupted values ("-1") with the last valid value from the same column
+                matrix[x[i],y[i]]=matrix[x[i]-1,y[i]]
+        #Flips the matrix back to original position
+        matrix=np.flipud(matrix)
+        #matrix = flipped matirx
     elif fmode=="drop": #filter appropriately, if fmode="drop"
         matrix=np.delete(matrix,errormatrix[0],axis=0) #deletes all rows with corrupted elements
         

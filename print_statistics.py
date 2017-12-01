@@ -6,7 +6,7 @@ Created on Thu Nov 30 13:43:42 2017
 """
 import pandas as pd
 def print_statistics(data):
-    Rownames=["Zone 1   ||","Zone 2   ||","Zone 3   ||","Zone 4   ||","All zones||"]
+    Rownames=["1   ||","2   ||","3   ||","4   ||","All ||"]
     Columnames=([["Minimum","1. quart.","2. quart.","3. quart.","Maximum"],["========","=========","=========","=========","========="]])
     
     dataT=data.T
@@ -49,6 +49,7 @@ def print_statistics(data):
     Tablevalues=np.vstack((Table1,Table2,Table3,Table4,Table5))
     Table=pd.DataFrame(Tablevalues,index=Rownames,columns=Columnames)
     
+    Table.index.name = 'Zone||'
     print(Table)
     
     
