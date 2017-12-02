@@ -120,12 +120,12 @@ while True:
             pass
         """
         -----------------------------
-        MENU LAYER 1 - Choose file name
+        MENU LAYER 1 - Show statistics
         -----------------------------
         """
     elif choice == 3:
         if menuBool == True:
-            print("Passed.")
+            print_statistics(data)
             #do something else
         else:
             print("\nPlease load data first!\n")
