@@ -35,7 +35,7 @@ while True:
             if choice < 0:
                 raise ValueError #raise a value error if input is negative
             else:
-                pass
+                print("Wow there, cowboy! Please select a valid option from the menu.")
         except ValueError:
             print("Wow there, cowboy! Please select a valid option from the menu.") #error message for invalid input
             choice = 0
@@ -44,6 +44,7 @@ while True:
             choice = 0
         except NameError:
             print("Wow there, cowboy! Please select a valid option from the menu.")
+    
     """
     -----------------------------
     MENU LAYER 1 - Choose file name
@@ -59,7 +60,7 @@ while True:
                 break
             else:
                 fileBool = False
-                print("\nThat file is invalid. Please try again!\nYou can also return to the main menu simply by typing 'return'.\n \n*TIP* Remember the '.csv' extenstion in your filename!")
+                print("\nThat file is invalid. Please try again!\nYou can also return to the main menu simply by typing 'return'.\n \n*TIP* Remember the '.csv' extenstion in your filename!\n")
             """
             -----------------------------
             MENU LAYER 2 - fmode Menu
@@ -68,6 +69,7 @@ while True:
             if fileBool == True:
                 while True:
                     fmodeMenu = np.array(["Forward fill", "Backward fill", "Drop", "Return to main menu"])
+                    print("")
                     for i in range(len(fmodeMenu)):
                         print("{:d}. {:s}".format(i+1, fmodeMenu[i])) #print the fmode menu
                     try:
@@ -83,16 +85,17 @@ while True:
                             start = time.time() #make a timestamp before loading data
                             print("\n============================\nfmode: '" + fmode + "':\nOm Nom Nom...\n")
                             outputLoad = load_measurements(filename, fmode)
-                            data = outputLoad[1]
-                            tvec = outputLoad[0]
+                            data = outputLoad[1] #raw data as numpy 4 by x matrix
+                            tvec = outputLoad[0] #raw time vector as numpy 6 by x matrix
                             stop = time.time() - start #calculate loadtime
                             
                             print("Data file loaded!\nLoad time: {:f} seconds.\n============================\n".format(stop)) #write loading time
                             tvecbackup = np.copy(tvec) #create backups for reset option
-                            databackup = np.copy(data)
+                            databackup = np.copy(data) #same
                             choice = -1
-                            menuBool = True
+                            menuBool = True #a boolean that varifies that data has been loaded
                             break
+                       
                         elif fmodeOption == len(fmodeMenu): #if the user chooses Return, break the while loop
                             choice = -1
                             break
@@ -107,6 +110,7 @@ while True:
                         print("\nERROR DETECTED!\nThe option you chose is invalid.")
             else:
                 pass
+        
         """
         -----------------------------
         MENU LAYER 1 - Aggregate Data
@@ -119,6 +123,7 @@ while True:
         else:
             print("\nPlease load data first!\n")
             pass
+        
         """
         -----------------------------
         MENU LAYER 1 - Show statistics
@@ -126,11 +131,11 @@ while True:
         """
     elif choice == 3:
         if menuBool == True:
-            print_statistics(data)
-            #do something else
+            print_statistics(data) #printing the statistics table
         else:
             print("\nPlease load data first!\n")
             pass
+        
         """
         -----------------------------
         MENU LAYER 1 - Visualize electricity consumption
@@ -138,16 +143,18 @@ while True:
         """
     elif choice == 4:
         if menuBool == True:
-            if aggBool == True: #if there is aggrigated data, just plot data
+            if aggBool == True: #if there is aggrigated data, or the data sample is relatively small, just plot data
+                imSure = True #boolean that checks whether you are sure you want to plot the data
+            elif len(data) < 100000:
                 imSure = True
-            
-            else:
+            else: #else ask the user if he/she is sure he/she want to plot the data
                 while True:
                     areYouSure = np.array(["Yes","No"]) #Ask the user if he/she is sure that if he/she wants to print the non-aggrigated data
-                    print("\nWARNING: Data is not aggregated!\nData will probably take some time to plot. Are you sure you want to plot the data anyway?\n")
+                    print("\nWARNING: Data sample is large!\nData will probably take a while to plot. Are you sure you want to plot the data anyway?\n")
                     for i in range(len(areYouSure)):
                         print("{:d}. {:s}".format(i+1, areYouSure[i])) #print 'Are you sure' menu
-                        
+                    print("")
+                    
                     try: #get input from user
                         aYSchoice = int(input("Please pick a number corresponding to your choice: ")) #user input for whether they want to continue plotting non-aggrigated data
                         if aYSchoice < 0:
@@ -155,51 +162,55 @@ while True:
                         else:
                             pass
                             if aYSchoice == 1:
-                               imSure = True 
+                               imSure = True #boolean that checks whether you are sure you want to plot the data
                                break
                             elif aYSchoice == 2:
-                                imSure = False
+                                imSure = False #boolean that checks whether you are sure you want to plot the data
                                 break
                             else:
                                 print("\nThat option number is not valid!")
                     except ValueError:
                         print("\nThat option number is not valid!")
                
-                """
-                -----------------------------
-                MENU LAYER 2 - Visualization menu
-                -----------------------------
-                """
-                while imSure == True:
-                    vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
-                    for i in range(len(vOptArr)):
-                        print("{:d}. {:s}".format(i+1, vOptArr[i])) #print visualization menu
+            """
+            -----------------------------
+            MENU LAYER 2 - Visualization menu
+            -----------------------------
+            """
+            while imSure == True: #Only runs if you are sure you want to plot the data
+                vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
+                print("")
+                for i in range(len(vOptArr)):
+                    print("{:d}. {:s}".format(i+1, vOptArr[i])) #print visualization menu
+                
+                try: #get input from user
+                    vOption = int(input("Please select the number corresponding to your desired visualization: "))
+                    if vOption < 0:
+                        raise ValueError
+                    else:
+                        pass
                     
-                    try: #get input from user
-                        vOption = int(input("Please select the number corresponding to your desired visualization: "))
-                        if vOption < 0:
-                            raise ValueError
-                        else:
-                            pass
-                        
-                        if vOption == 1: #plot zones seperately
-                            period = "Minutes"
-                            dataPlot(data,period)
-                            print("")
-                        elif vOption == 2: #plot the zones combined
-                            period = "Minutes" #temp
-                            dataSum = np.sum(data,axis=1) #summing the data
-                            dataPlot(dataSum,period)
-                            print("")
-                        elif vOption == 3: #go to main menu
-                            break
-                        else:
-                            print("\nThat option number is not valid!")
-                    except ValueError:
-                        print("\nThat option number is not valid!")                 
+                    if vOption == 1: #plot zones seperately
+                        period = "Minute" #temp
+                        plotType = 1 #specifies if the plot is for the zones seperately or combined
+                        dataPlot(data,period,plotType) #use dataPlot subscript to plot the data
+                        print("")
+                    elif vOption == 2: #plot the zones combined
+                        period = "Minute" #temp
+                        plotType = 2 
+                        dataSum = np.sum(data,axis=1) #summing the data
+                        dataPlot(dataSum,period,plotType) #use dataPlot subscript to plot the data
+                        print("")
+                    elif vOption == 3: #go to main menu
+                        break
+                    else:
+                        print("\nThat option number is not valid!")
+                except ValueError:
+                    print("\nThat option number is not valid!")                 
         else:
             print("\nPlease load data first!\n")
             pass
+            
         """
         -----------------------------
         MENU LAYER 1 - Show raw data files
@@ -207,11 +218,15 @@ while True:
         """
     elif choice == 5:
         if menuBool == True:
-            print("Passed.")
-            #do something
+            print("\n============================\nRaw Data\n============================\n")
+            print(data)
+            print("\n============================\nRaw Time Vector\n============================\n")
+            print(tvec)
+            print("")
         else:
             print("\nPlease load data first!\n")
             pass
+        
         """
         -----------------------------
         MENU LAYER 1 - Reset data
@@ -219,8 +234,8 @@ while True:
         """
     elif choice == 6:
         if menuBool == True:
-            data = databackup
-            tvec = tvecbackup
+            data = databackup #define the data as the backup data
+            tvec = tvecbackup 
             print("\nData is reset!\n")
             #do something
         else:
@@ -229,4 +244,5 @@ while True:
     elif choice == 7: #Exit script
         byebye = "\n============================\nHasta la Vista, baby\n============================"
         print(byebye.center(80))
+        time.sleep(3)
         break
