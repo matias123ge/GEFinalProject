@@ -12,6 +12,7 @@ import os.path
 from load_measurements import *
 from print_statistics import *   
 from dataPlot import * 
+
 #start mainscript
 """
 -----------------------------
@@ -21,7 +22,7 @@ MENU LAYER 0 - Open main menu
 welcome = "\n============================\nWelcome!\n============================\n"
 print(welcome.center(80))
 menuBool = False #checks if data is loaded
-aggBool = 1 #checks which aggregation is active
+aggBool = False #checks which aggregation is active
 
 mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw files", "Reset data", "Quit"]) #define options
 while True:
@@ -137,38 +138,65 @@ while True:
         """
     elif choice == 4:
         if menuBool == True:
-            period = "Minutes"
-            dataPlot(data,period)
-
-            """
-            -----------------------------
-            MENU LAYER 2 - Visualization menu
-            -----------------------------
-            """
-            while True:
-                vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
-                for i in range(len(vOptArr)):
-                    print("{:d}. {:s}".format(i+1, vOptArr[i])) #print visualization menu
-                
-                try:
-                    vOption = int(input("Please select the number corresponding to your desired visualization: "))
-                    if vOption < 0:
-                        raise ValueError
-                    else:
-                        pass
-                    
-                    if vOption == 1:
-                        print("\nPrints a diagram for each zone seperately!") #still working on this!
-                    elif vOption == 2:
-                        print("\nPrints a diagram for all zones comebined!") #still working on this
-                    elif vOption == 3: #go to main menu
-                        break
-                    else:
-                        print("\nThat option number is not valid!")
+            if aggBool == True: #if there is aggrigated data, just plot data
+                imSure = True
+            
+            else:
+                while True:
+                    areYouSure = np.array(["Yes","No"]) #Ask the user if he/she is sure that if he/she wants to print the non-aggrigated data
+                    print("\nWARNING: Data is not aggregated!\nData will probably take some time to plot. Are you sure you want to plot the data anyway?\n")
+                    for i in range(len(areYouSure)):
+                        print("{:d}. {:s}".format(i+1, areYouSure[i])) #print 'Are you sure' menu
                         
-                except ValueError:
-                    print("\nThat option number is not valid!")
-            #do something entirely different
+                    try: #get input from user
+                        aYSchoice = int(input("Please pick a number corresponding to your choice: ")) #user input for whether they want to continue plotting non-aggrigated data
+                        if aYSchoice < 0:
+                            raise ValueError
+                        else:
+                            pass
+                            if aYSchoice == 1:
+                               imSure = True 
+                               break
+                            elif aYSchoice == 2:
+                                imSure = False
+                                break
+                            else:
+                                print("\nThat option number is not valid!")
+                    except ValueError:
+                        print("\nThat option number is not valid!")
+               
+                """
+                -----------------------------
+                MENU LAYER 2 - Visualization menu
+                -----------------------------
+                """
+                while imSure == True:
+                    vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
+                    for i in range(len(vOptArr)):
+                        print("{:d}. {:s}".format(i+1, vOptArr[i])) #print visualization menu
+                    
+                    try: #get input from user
+                        vOption = int(input("Please select the number corresponding to your desired visualization: "))
+                        if vOption < 0:
+                            raise ValueError
+                        else:
+                            pass
+                        
+                        if vOption == 1: #plot zones seperately
+                            period = "Minutes"
+                            dataPlot(data,period)
+                            print("")
+                        elif vOption == 2: #plot the zones combined
+                            period = "Minutes" #temp
+                            dataSum = np.sum(data,axis=1) #summing the data
+                            dataPlot(dataSum,period)
+                            print("")
+                        elif vOption == 3: #go to main menu
+                            break
+                        else:
+                            print("\nThat option number is not valid!")
+                    except ValueError:
+                        print("\nThat option number is not valid!")                 
         else:
             print("\nPlease load data first!\n")
             pass
