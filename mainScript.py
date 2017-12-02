@@ -11,7 +11,7 @@ import time
 import copy
 import os.path
 from load_measurements import *
-    
+from print_statistics import*    
 #start mainscript
 """
 -----------------------------

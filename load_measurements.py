@@ -31,6 +31,9 @@ def load_measurements(filename, fmode):
         #Flip matrix, do forwards fill
         #Check for 1st value if -1
         matrix=np.flipud(matrix)
+        errormatrix=np.where(matrix==-1)
+        x=errormatrix[0] #splitting errormatrix, for use in forloop
+        y=errormatrix[1]
         if np.any(matrix[0,:]==-1):#checks if the first row contains any corrupted elements
             matrix=np.delete(matrix,errormatrix[0],axis=0)  #if so, deletes all rows with corrupted elements
             print("First data input was corrupt, all corrupt inputs have been deleted.")
@@ -41,11 +44,12 @@ def load_measurements(filename, fmode):
                 matrix[x[i],y[i]]=matrix[x[i]-1,y[i]]
         #Flips the matrix back to original position
         matrix=np.flipud(matrix)
-        #matrix = flipped matirx
+        #matrix = flipped matrix
     elif fmode=="drop": #filter appropriately, if fmode="drop"
         matrix=np.delete(matrix,errormatrix[0],axis=0) #deletes all rows with corrupted elements
         
     #split tvec into Nx6 tvec matrix and Nx4 
     tvec=matrix[:,[0,1,2,3,4,5]]
     data=matrix[:,[6,7,8,9]]
+    
     return (tvec, data)
