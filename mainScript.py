@@ -32,10 +32,10 @@ while True:
     while not(np.any(choice == np.arange(len(mainMenu))+1)):
         try:
             choice = float(input("Please choose the number from the menu item: ")) #Choose in the menu. 
-            if choice < 0:
+            if (choice < 0) or (choice > len(mainMenu)):
                 raise ValueError #raise a value error if input is negative
             else:
-                print("Wow there, cowboy! Please select a valid option from the menu.")
+                pass
         except ValueError:
             print("Wow there, cowboy! Please select a valid option from the menu.") #error message for invalid input
             choice = 0
@@ -191,12 +191,12 @@ while True:
                         pass
                     
                     if vOption == 1: #plot zones seperately
-                        period = "Minute" #temp
+                        period = "Minute" #temp until aggregate works
                         plotType = 1 #specifies if the plot is for the zones seperately or combined
                         dataPlot(data,period,plotType) #use dataPlot subscript to plot the data
                         print("")
                     elif vOption == 2: #plot the zones combined
-                        period = "Minute" #temp
+                        period = "Minute" #temp until aggregate works
                         plotType = 2 
                         dataSum = np.sum(data,axis=1) #summing the data
                         dataPlot(dataSum,period,plotType) #use dataPlot subscript to plot the data
@@ -244,5 +244,5 @@ while True:
     elif choice == 7: #Exit script
         byebye = "\n============================\nHasta la Vista, baby\n============================"
         print(byebye.center(80))
-        time.sleep(3)
+        time.sleep(1)
         break
