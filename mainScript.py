@@ -8,10 +8,10 @@ Created on Thu Nov 23 14:19:58 2017
 import numpy as np
 import pandas as pd
 import time
-import copy
 import os.path
 from load_measurements import *
-from print_statistics import*    
+from print_statistics import *   
+from dataPlot import * 
 #start mainscript
 """
 -----------------------------
@@ -22,6 +22,7 @@ welcome = "\n============================\nWelcome!\n===========================
 print(welcome.center(80))
 menuBool = False #checks if data is loaded
 aggBool = 1 #checks which aggregation is active
+
 mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw files", "Reset data", "Quit"]) #define options
 while True:
     for i in range(len(mainMenu)):
@@ -50,6 +51,7 @@ while True:
     if choice == 1: #define the filename you want to input and load the data
         while choice == 1:
             filename = str(input("Please enter the name of the file you want to load: ")) #input filename
+            
             if os.path.isfile(filename): #determine whether the file exists
                 fileBool = True #a variable that tells whether the file exists
             elif filename.lower() == "return":
@@ -68,7 +70,7 @@ while True:
                     for i in range(len(fmodeMenu)):
                         print("{:d}. {:s}".format(i+1, fmodeMenu[i])) #print the fmode menu
                     try:
-                        fmodeOption = int(input("\nPlease specify the number corresponding to the method of treatment for corrupted measurements: ")) #user input for fmode
+                        fmodeOption = int(input("Please specify the number corresponding to the method of treatment for corrupted measurements: ")) #user input for fmode
                         if choice < 0:
                             raise ValueError #raise a value error if input is negative
                         else:
@@ -76,13 +78,17 @@ while True:
                         fmode_index = np.arange(len(fmodeMenu)-1)+1 #Make an index of the fmode options
                         if np.any(fmode_index == fmodeOption): #if the user chooses one of the fmode options, execute that command
                             fmode = fmodeMenu[(fmodeOption-1)] #the chosen fmode 
+                            
                             start = time.time() #make a timestamp before loading data
                             print("\n============================\nfmode: '" + fmode + "':\nOm Nom Nom...\n")
                             outputLoad = load_measurements(filename, fmode)
+                            data = outputLoad[1]
+                            tvec = outputLoad[0]
                             stop = time.time() - start #calculate loadtime
+                            
                             print("Data file loaded!\nLoad time: {:f} seconds.\n============================\n".format(stop)) #write loading time
-                            tvecbackup = np.copy(outputLoad[0]) #create backups for reset option
-                            databackup = np.copy(outputLoad[1])
+                            tvecbackup = np.copy(tvec) #create backups for reset option
+                            databackup = np.copy(data)
                             choice = -1
                             menuBool = True
                             break
@@ -91,6 +97,7 @@ while True:
                             break
                         else:
                             raise ValueError
+                            
                     except ValueError:
                         print("\nERROR DETECTED!\nPlease select a valid option from the menu.")
                     except SyntaxError:
@@ -130,7 +137,9 @@ while True:
         """
     elif choice == 4:
         if menuBool == True:
-            print("Passed.")
+            period = "Minutes"
+            dataPlot(data,period)
+
             """
             -----------------------------
             MENU LAYER 2 - Visualization menu
@@ -140,12 +149,14 @@ while True:
                 vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
                 for i in range(len(vOptArr)):
                     print("{:d}. {:s}".format(i+1, vOptArr[i])) #print visualization menu
+                
                 try:
                     vOption = int(input("Please select the number corresponding to your desired visualization: "))
                     if vOption < 0:
                         raise ValueError
                     else:
                         pass
+                    
                     if vOption == 1:
                         print("\nPrints a diagram for each zone seperately!") #still working on this!
                     elif vOption == 2:
@@ -154,6 +165,7 @@ while True:
                         break
                     else:
                         print("\nThat option number is not valid!")
+                        
                 except ValueError:
                     print("\nThat option number is not valid!")
             #do something entirely different
@@ -168,7 +180,7 @@ while True:
     elif choice == 5:
         if menuBool == True:
             print("Passed.")
-            #do somehting
+            #do something
         else:
             print("\nPlease load data first!\n")
             pass
@@ -182,7 +194,7 @@ while True:
             data = databackup
             tvec = tvecbackup
             print("\nData is reset!\n")
-            #do somehting
+            #do something
         else:
             print("\nThere is no data to reset. Please load data first!\n")
             pass
