@@ -55,8 +55,12 @@ while True:
         while choice == 1:
             filename = str(input("Please enter the name of the file you want to load: ")) #input filename
             
-            if os.path.isfile(filename): #determine whether the file exists
-                fileBool = True #a variable that tells whether the file exists
+            if os.path.isfile(filename): #checks whether the file exists
+                if filename.endswith(".csv"): #checks whether the file has '.csv' extension
+                    fileBool = True #a variable that tells whether the file exists
+                else:
+                    print("\nERROR DETECTED! Only '.csv'-files can be loaded")
+                
             elif filename.lower() == "return":
                 break
             else:
