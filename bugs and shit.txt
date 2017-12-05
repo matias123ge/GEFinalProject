@@ -4,6 +4,7 @@ Visualization starts from 0
 Udvidet help
 Time scale needs adjustment in statistics 
 Display raw data as panda
+Statstics chrashes after run aggregation/clear (maybe) 
 evt. More specific clear data message
 evt. jul 
 MORE MEMES
