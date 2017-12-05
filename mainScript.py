@@ -16,9 +16,9 @@ from aggregate_measurements import *
 
 #start mainscript
 """
------------------------------
+-----------------------------------------
 MENU LAYER 0 - Open main menu
------------------------------
+-----------------------------------------
 """
 welcome = "\n============================\nWelcome!\n============================\n"
 print(welcome.center(80))
@@ -27,6 +27,8 @@ aggBool = False #checks which aggregation is active
 
 mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw data", "Clear Aggregation", "Quit"]) #define options
 while True:
+    counter = 0 #counts the number of loops done by a specific while loop
+    print("")
     for i in range(len(mainMenu)):
         print("{:d}. {:s}".format(i+1, mainMenu[i])) #print options menu
         choice = 0
@@ -47,36 +49,40 @@ while True:
             print("Wow there, cowboy! Please select a valid option from the menu.")
     
     """
-    -----------------------------
+    -----------------------------------------
     MENU LAYER 1 - Choose file name
-    -----------------------------
+    -----------------------------------------
     """
     if choice == 1: #define the filename you want to input and load the data
         while choice == 1:
-            filename = str(input("Please enter the name of the file you want to load: ")) #input filename
+            counter = counter + 1 #count how many attempts the user has done to load data
+            if counter > 2:
+                print("*TIP* You can return to the main menu by writing 'return'.") #tell the user, after 2 attempts, that they can choose to leave the menu by writing 'return'
+            filename = str(input("\nPlease enter the name of the file you want to load: ")) #input filename
             
             if os.path.isfile(filename): #checks whether the file exists
                 if filename.endswith(".csv"): #checks whether the file has '.csv' extension
                     fileBool = True #a variable that tells whether the file exists
                 else:
                     print("\nERROR DETECTED! Only '.csv'-files can be loaded")
+                    fileBool = False
                 
             elif filename.lower() == "return":
                 break
             else:
                 fileBool = False
-                print("\nThat file is invalid. Please try again!\nYou can also return to the main menu simply by typing 'return'.\n \n*TIP* Remember the '.csv' extenstion in your filename!\n")
+                print("\nThat file is invalid. Please try again!\n*TIP* Remember the '.csv' extenstion in your filename!")
             """
-            -----------------------------
+            -----------------------------------------
             MENU LAYER 2 - fmode Menu
-            -----------------------------
+            -----------------------------------------
             """
             if fileBool == True:
+                fmodeMenu = np.array(["Forward fill", "Backward fill", "Drop", "Return to main menu"])
+                print("")
+                for i in range(len(fmodeMenu)):
+                    print("{:d}. {:s}".format(i+1, fmodeMenu[i])) #print the fmode menu
                 while True:
-                    fmodeMenu = np.array(["Forward fill", "Backward fill", "Drop", "Return to main menu"])
-                    print("")
-                    for i in range(len(fmodeMenu)):
-                        print("{:d}. {:s}".format(i+1, fmodeMenu[i])) #print the fmode menu
                     try:
                         fmodeOption = int(input("Please specify the number corresponding to the method of treatment for corrupted measurements: ")) #user input for fmode
                         if choice < 0:
@@ -109,26 +115,26 @@ while True:
                             raise ValueError
                             
                     except ValueError:
-                        print("\nERROR DETECTED!\nPlease select a valid option from the menu.")
+                        print("\nERROR DETECTED! Please select a valid option from the menu.\n")
                     except SyntaxError:
-                        print("\nERROR DETECTED!\nThere is an issue with the SYNTAX!\nPlease use letters in the english alphabet\n")
+                        print("\nERROR DETECTED! There is an issue with the SYNTAX!\nPlease use letters in the english alphabet\n")
                     except NameError:
-                        print("\nERROR DETECTED!\nThe option you chose is invalid.")
+                        print("\nERROR DETECTED! The option you chose is invalid.")
             else:
                 pass
         
         """
-        -----------------------------
+        -----------------------------------------
         MENU LAYER 1 - Aggregate Data
-        -----------------------------
+        -----------------------------------------
         """
     elif choice == 2:
         if menuBool == True:
             
             """
-            -----------------------------
+            -----------------------------------------
             MENU LAYER 2 - Aggregation Menu
-            -----------------------------
+            -----------------------------------------
             """
             aggModeMenu = np.array(["Hourly consumption", "Daily consumption", "Monthly consumption", "Average time-of-day consumption", "Return to main menu"]) #array for menu
             aggPeriod = np.array(["hour","day","month", "hour of the day"]) #an array for period input
@@ -156,21 +162,22 @@ while True:
                         data = aggOutPut[1]
                         tvec = aggOutPut[0]
                         break
+                    
                     elif aggModeInput == len(aggModeMenu): #go back to mainmenu
                         break
                     else:
                         raise ValueError
                 except ValueError:
-                    print("\nERROR DETECTED!\nPlease select a valid option from the menu.\n")
+                    print("\nERROR DETECTED! Please select a valid option from the menu.\n")
  
         else:
             print("\nPlease load data first!\n")
             pass
         
         """
-        -----------------------------
+        ------------------------------------------
         MENU LAYER 1 - Show statistics
-        -----------------------------
+        -----------------------------------------
         """
     elif choice == 3:
         if menuBool == True:
@@ -180,9 +187,9 @@ while True:
             pass
         
         """
-        -----------------------------
+        -----------------------------------------
         MENU LAYER 1 - Visualize electricity consumption
-        -----------------------------
+        -----------------------------------------
         """
     elif choice == 4:
         if menuBool == True:
@@ -217,9 +224,9 @@ while True:
                         print("\nThat option number is not valid!")
                
             """
-            -----------------------------
+            -----------------------------------------
             MENU LAYER 2 - Visualization menu
-            -----------------------------
+            -----------------------------------------
             """
             while imSure == True: #Only runs if you are sure you want to plot the data
                 vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
@@ -256,9 +263,9 @@ while True:
             pass
             
         """
-        -----------------------------
+        -----------------------------------------
         MENU LAYER 1 - Show raw data files
-        -----------------------------
+        -----------------------------------------
         """
     elif choice == 5:
         if menuBool == True: #prints raw data, if any is loaded
@@ -273,7 +280,7 @@ while True:
         
         """
         -----------------------------
-        MENU LAYER 1 - Reset data
+        MENU LAYER 1 - Clear Aggregation
         -----------------------------
         """
     elif choice == 6:
@@ -282,7 +289,6 @@ while True:
             tvec = tvecbackup 
             aggBool = False #aggregation is now unapplied
             print("\nAggregation is cleared!\n")
-            #do something
         else:
             print("\nThere is no data. Please load data first!\n")
             pass

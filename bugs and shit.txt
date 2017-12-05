@@ -1,10 +1,12 @@
 BUGS til torsdag
-Ingen advarsel på display data efter man har aggregated
+Ingen advarsel på display data efter man har aggregated - fixed!
 Visualization starts from 0  
 Udvidet help
 Time scale needs adjustment in statistics 
 Display raw data as panda
-Statstics chrashes after run aggregation/clear (maybe) 
-evt. More specific clear data message
+Statstics chrashes after run aggregation/clear (maybe)
+Display active aggregation in main menu 
+evt. More specific clear data message - maybe fixed?
+evt. jul 
 evt. jul 
 MORE MEMES
