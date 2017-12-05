@@ -78,7 +78,7 @@ while True:
                             raise ValueError #raise a value error if input is negative
                         else:
                             pass
-                        fmode_index = np.arange(len(fmodeMenu)-1)+1 #Make an index of the fmode options
+                        fmode_index = np.arange(len(fmodeMenu)-1)+1 #Make an index of the fmode options excluding 'Return to menu'
                         if np.any(fmode_index == fmodeOption): #if the user chooses one of the fmode options, execute that command
                             fmode = fmodeMenu[(fmodeOption-1)] #the chosen fmode 
                             
@@ -118,8 +118,42 @@ while True:
         """
     elif choice == 2:
         if menuBool == True:
-            print("Passed.")
-            #do something
+            
+            """
+            -----------------------------
+            MENU LAYER 2 - Aggregation Menu
+            -----------------------------
+            """
+            aggModeMenu = np.array(["Hourly consumption", "Daily consumption", "Monthly consumption", "Average time-of-day consumtion", "Return to main menu"]) #array for menu
+            aggPeriod = np.array(["hour","day","month", "hour of the day"]) #an array for period input
+            while True:
+                for i in range(len(aggModeMenu)):
+                    print("{:d}. {:s}".format(i+1, aggModeMenu[i])) #print the fmode menu
+                try:
+                    aggModeInput = int(input("Please specify the number corresponding to the method of treatment for corrupted measurements: ")) #user input for fmode
+                    if choice < 0:
+                        raise ValueError #raise a value error if input is negative
+                    else:
+                        pass
+                    
+                    agg_index = np.arange(len(aggModeMenu)-1)+1 #index for the aggModeMenu excluding 'Return to menu'
+                    if np.any(aggModeInput == agg_index):
+                        if aggBool == True: #if you already have an active aggregation, this aggregation is cleared, and the other one is applied
+                            data = databackup
+                            tvec = tvecbackup
+                        else:
+                            pass
+                        period = aggPeriod[aggModeInput] #period is defined from aggPeriod array
+                        aggBool = True #aggBool is now said to be active
+                        print("Do aggregation") #temp
+                        break
+                    elif aggModeInput == len(aggModeMenu): #go back to mainmenu
+                        break
+                    else:
+                        raise ValueError
+                except ValueError:
+                    print("\nERROR DETECTED!\nPlease select a valid option from the menu.\n")
+ 
         else:
             print("\nPlease load data first!\n")
             pass
@@ -218,7 +252,7 @@ while True:
         -----------------------------
         """
     elif choice == 5:
-        if menuBool == True:
+        if menuBool == True: #prints raw data, if any is loaded
             print("\n============================\nRaw Data\n============================\n")
             print(data)
             print("\n============================\nRaw Time Vector\n============================\n")
@@ -237,6 +271,7 @@ while True:
         if menuBool == True:
             data = databackup #define the data as the backup data
             tvec = tvecbackup 
+            aggBool = False #aggregation is now unapplied
             print("\nAggregation is cleared!\n")
             #do something
         else:
