@@ -11,7 +11,8 @@ import time
 import os.path
 from load_measurements import *
 from print_statistics import *   
-from dataPlot import * 
+from dataPlot import *
+from aggregate_measurements import * 
 
 #start mainscript
 """
@@ -142,12 +143,13 @@ while True:
                         if aggBool == True: #if you already have an active aggregation, this aggregation is cleared, and the other one is applied
                             data = databackup
                             tvec = tvecbackup
-                        
                         else:
                             pass
                         period = aggPeriod[aggModeInput-1] #period is defined from aggPeriod array
                         aggBool = True #aggBool is now said to be active
-                        print("Do aggregation") #temp
+                        aggOutPut = aggregate_measurements(tvec,data,period) #access aggregation subscribt
+                        data = aggOutPut[1]
+                        tvec = aggOutPut[0]
                         break
                     elif aggModeInput == len(aggModeMenu): #go back to mainmenu
                         break
