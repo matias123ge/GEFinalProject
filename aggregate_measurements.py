@@ -19,17 +19,22 @@ def aggregate_measurements(tvec,data,period):
     period=period.lower()
     complete=tvec.join(data)
     if period=="hour":
-        complete.groupby("Hour").mean()#ikke rigtigt, lige nu bliver tidsenhederne også computet. 
+        #Group by hour
+        complete.groupby("Hour")
+        #There needs to be some kind of sum command here or minutes wont be combined. 
+        complete.head(1)#This is wrong, gives what we would expect for hour of the day, but only for the first day...
         
         
+    
     
     if period=="day":
-        complete.groupby("Day").mean()
+        complete.groupby("Day").sum()
     
     if period=="month":
-        complete.groupby("Month").mean()
+        complete.groupby("Month").sum()
     
     if period=="hour of the day":
+         complete.groupby("Hour").sum() #This is all the hour summed. Needs seperation 
         
         #.mean BRUGBAR TIL GENNEMSNITTET AF MÅLINGER
         #COUNT FUNCTIONEN BLIVER BRUGBAR TIL tvec_a
