@@ -124,13 +124,13 @@ while True:
             MENU LAYER 2 - Aggregation Menu
             -----------------------------
             """
-            aggModeMenu = np.array(["Hourly consumption", "Daily consumption", "Monthly consumption", "Average time-of-day consumtion", "Return to main menu"]) #array for menu
+            aggModeMenu = np.array(["Hourly consumption", "Daily consumption", "Monthly consumption", "Average time-of-day consumption", "Return to main menu"]) #array for menu
             aggPeriod = np.array(["hour","day","month", "hour of the day"]) #an array for period input
             while True:
                 for i in range(len(aggModeMenu)):
                     print("{:d}. {:s}".format(i+1, aggModeMenu[i])) #print the fmode menu
                 try:
-                    aggModeInput = int(input("Please specify the number corresponding to the method of treatment for corrupted measurements: ")) #user input for fmode
+                    aggModeInput = int(input("Please specify the number corresponding to the type of aggregation: ")) #user input for fmode
                     if choice < 0:
                         raise ValueError #raise a value error if input is negative
                     else:
@@ -138,12 +138,14 @@ while True:
                     
                     agg_index = np.arange(len(aggModeMenu)-1)+1 #index for the aggModeMenu excluding 'Return to menu'
                     if np.any(aggModeInput == agg_index):
+                        
                         if aggBool == True: #if you already have an active aggregation, this aggregation is cleared, and the other one is applied
                             data = databackup
                             tvec = tvecbackup
+                        
                         else:
                             pass
-                        period = aggPeriod[aggModeInput] #period is defined from aggPeriod array
+                        period = aggPeriod[aggModeInput-1] #period is defined from aggPeriod array
                         aggBool = True #aggBool is now said to be active
                         print("Do aggregation") #temp
                         break

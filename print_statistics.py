@@ -55,15 +55,15 @@ def print_statistics(data):
     Table.index.name = 'Zone||'
     print("===============================================================\n",Table)
     
-    if "aggregation" not in globals():#no aggregation
+    if "period" not in globals():#no aggregation
         print("\n===============================================================\nunit=Watt-hour\ntimescale=Consumption/min\n=========================")
-    elif aggregation=="Consumption per hour":
+    elif period=="Consumption per hour":
         print("unit=kWh\ntimescale=Consumption/hour")
-    elif aggregation=="Consumption per day":
+    elif period=="Consumption per day":
         print("unit=kWh\ntimescale=Consumption/day")
-    elif aggregation=="Consumption per month":
+    elif period=="Consumption per month":
         print("unit=kWh\ntimescale=Consumption/month")
-    elif aggregation=="Hour-of-day consumption":
+    elif period=="Hour-of-day consumption":
         print("unit=kWh\ntimescale=average hourly consumption") 
    
     
