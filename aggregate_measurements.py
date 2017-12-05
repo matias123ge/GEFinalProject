@@ -9,17 +9,21 @@ import numpy as np
 import pandas as pd
 #Convert tvec and data back to panda dataframe for easier processing:
 def aggregate_measurements(tvec,data,period):
+    #Define headers
     header=np.array(["Year","Month","Day","Hour","Minutes","Seconds"])
     header2=np.array(["Zone1","Zone2","Zone3","Zone4"])
+    #Convert data to DataFrame units. 
     tvec=pd.DataFrame(tvec,columns=header)
     data=pd.DataFrame(data, columns=header2)
     #Make sure period is case insensitive
     period=period.lower()
+    #Join Dataframes so data stays consistent.
     complete=tvec.join(data)
     if period=="hour":
         #Group by hour
         complete1=complete.groupby("Hour").sum()
         tvec_a=complete1
+        #Display the data per time unit
         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
         
     if period=="day":
@@ -37,8 +41,11 @@ def aggregate_measurements(tvec,data,period):
          complete1=complete.groupby("Hour").mean() #This is all the hour summed
          tvec_a=complete1
          data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
-         print("These are the mean values per hour:")
+         #Let the user know that these values are averages, not sums in the time interval
+         print("These are the mean values per hour")
+    #Display the aggregated data
     print(data_a)
+    #Convert to array for use in other functions. 
     tvec_a=np.array(tvec_a)
     data_a=np.array(data_a)
     return (tvec_a,data_a)
