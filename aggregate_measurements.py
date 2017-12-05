@@ -11,8 +11,6 @@ import pandas as pd
 def aggregate_measurements(tvec,data,period):
     header=np.array(["Year","Month","Day","Hour","Minutes","Seconds"])
     header2=np.array(["Zone1","Zone2","Zone3","Zone4"])
-    tvec.astype(int)
-    data.astype(int)
     tvec=pd.DataFrame(tvec,columns=header)
     data=pd.DataFrame(data, columns=header2)
     #Make sure period is case insensitive
@@ -20,23 +18,31 @@ def aggregate_measurements(tvec,data,period):
     complete=tvec.join(data)
     if period=="hour":
         #Group by hour
-        complete.groupby("Hour")
-        #There needs to be some kind of sum command here or minutes wont be combined. 
-        complete.head(1)#This is wrong, gives what we would expect for hour of the day, but only for the first day...
+        complete1=complete.groupby("Hour").sum()
+        tvec_a=complete1
+        data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
         
-        
-    
-    
     if period=="day":
-        complete.groupby("Day").sum()
+        complete1=complete.groupby("Day").sum()
+        tvec_a=complete1
+        data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
     
     if period=="month":
-        complete.groupby("Month").sum()
+        complete1=complete.groupby("Month").sum()
+        tvec_a=complete1
+        data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
     
     if period=="hour of the day":
-         complete.groupby("Hour").sum() #This is all the hour summed. Needs seperation 
+        # index1=np.array(["0:00-1:00","1:00-2:00","2:00-3:00","3:00-4:00","4:00-5:00","5:00-6:00","6:00-7:00","7:00-8:00","8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00","20:00-21:00","21:00-22:00","22:00-23:00","23:00-00:00"])
+         complete1=complete.groupby("Hour").mean() #This is all the hour summed
+         tvec_a=complete1
+         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
+    print(data_a)
+    tvec_a=np.array(tvec_a)
+    data_a=np.array(data_a)
+    return (tvec_a,data_a)
+
         
-        #.mean BRUGBAR TIL GENNEMSNITTET AF MÅLINGER
-        #COUNT FUNCTIONEN BLIVER BRUGBAR TIL tvec_a
+       
     
         
