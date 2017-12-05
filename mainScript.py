@@ -24,7 +24,7 @@ print(welcome.center(80))
 menuBool = False #checks if data is loaded
 aggBool = False #checks which aggregation is active
 
-mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw files", "Reset data", "Quit"]) #define options
+mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw files", "Clear Aggregation", "Quit"]) #define options
 while True:
     for i in range(len(mainMenu)):
         print("{:d}. {:s}".format(i+1, mainMenu[i])) #print options menu
@@ -236,10 +236,10 @@ while True:
         if menuBool == True:
             data = databackup #define the data as the backup data
             tvec = tvecbackup 
-            print("\nData is reset!\n")
+            print("\nAggregation is cleared!\n")
             #do something
         else:
-            print("\nThere is no data to reset. Please load data first!\n")
+            print("\nThere is no data. Please load data first!\n")
             pass
     elif choice == 7: #Exit script
         byebye = "\n============================\nHasta la Vista, baby\n============================"
