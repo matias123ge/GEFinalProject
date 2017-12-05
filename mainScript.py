@@ -91,6 +91,7 @@ while True:
                             stop = time.time() - start #calculate loadtime
                             
                             print("Data file loaded!\nLoad time: {:f} seconds.\n============================\n".format(stop)) #write loading time
+                            aggBool = False #when loading new data, the aggregation is automatically cleared (obviously)
                             tvecbackup = np.copy(tvec) #create backups for reset option
                             databackup = np.copy(data) #same
                             choice = -1
