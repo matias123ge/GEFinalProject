@@ -1,0 +1,9 @@
+BUGS til torsdag
+Ingen advarsel på display data efter man har aggregated
+Visualization starts from 0  
+Udvidet help
+Time scale needs adjustment in statistics 
+Display raw data as panda
+evt. More specific clear data message
+evt. jul 
+MORE MEMES

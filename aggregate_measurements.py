@@ -45,10 +45,10 @@ def aggregate_measurements(tvec,data,period):
          print("These are the mean values per hour:")
          print(" ")
     #Display the aggregated data
-    print("=============================")
+    print("===================================================")
     print(" ")
     print(data_a)
-    print("-----------------------------")
+    print("---------------------------------------------------")
     print(" ")
     #Convert to array for use in other functions. 
     tvec_a=np.array(tvec_a)
