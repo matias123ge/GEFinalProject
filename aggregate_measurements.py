@@ -42,9 +42,14 @@ def aggregate_measurements(tvec,data,period):
          tvec_a=complete1
          data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
          #Let the user know that these values are averages, not sums in the time interval
-         print("These are the mean values per hour")
+         print("These are the mean values per hour:")
+         print(" ")
     #Display the aggregated data
+    print("=============================")
+    print(" ")
     print(data_a)
+    print("-----------------------------")
+    print(" ")
     #Convert to array for use in other functions. 
     tvec_a=np.array(tvec_a)
     data_a=np.array(data_a)
