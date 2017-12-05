@@ -37,6 +37,7 @@ def aggregate_measurements(tvec,data,period):
          complete1=complete.groupby("Hour").mean() #This is all the hour summed
          tvec_a=complete1
          data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
+         print("These are the mean values per hour:")
     print(data_a)
     tvec_a=np.array(tvec_a)
     data_a=np.array(data_a)
