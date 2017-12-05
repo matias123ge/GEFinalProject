@@ -24,7 +24,7 @@ print(welcome.center(80))
 menuBool = False #checks if data is loaded
 aggBool = False #checks which aggregation is active
 
-mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw files", "Clear Aggregation", "Quit"]) #define options
+mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw data", "Clear Aggregation", "Quit"]) #define options
 while True:
     for i in range(len(mainMenu)):
         print("{:d}. {:s}".format(i+1, mainMenu[i])) #print options menu
@@ -148,9 +148,10 @@ while True:
             elif len(data) < 100000:
                 imSure = True
             else: #else ask the user if he/she is sure he/she want to plot the data
+                print("\nWARNING: Data sample is large! Data will probably take a while to plot.\n")
                 while True:
                     areYouSure = np.array(["Yes","No"]) #Ask the user if he/she is sure that if he/she wants to print the non-aggrigated data
-                    print("\nWARNING: Data sample is large!\nData will probably take a while to plot. Are you sure you want to plot the data anyway?\n")
+                    print("Are you sure you want to plot the data anyway?\n")
                     for i in range(len(areYouSure)):
                         print("{:d}. {:s}".format(i+1, areYouSure[i])) #print 'Are you sure' menu
                     print("")
