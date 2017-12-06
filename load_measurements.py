@@ -10,6 +10,17 @@ import pandas as pd
 
 #function to load data from csv file, and converting to numpy.array, filtering corrupted lines.
 def load_measurements(filename, fmode):
+    """
+    Loads data from .csv-files.
+    
+    INPUT:
+        filename as type(str),
+        fmode as type(str)
+    
+    OUTPUT:
+        'data' as numpy array
+        'tvec' as numpy array
+    """
     fmode = fmode.lower() #makes sure you can input "fmode" in both upper and lower case, in the mainScript
     matrix=pd.read_csv(filename, header=None) #read the csv file, and makes sure the first data row is not used as header for the DataFrame
     matrix=np.array(matrix) #convert to numpy array   

@@ -7,6 +7,15 @@ Created on Thu Nov 30 13:43:42 2017
 import pandas as pd
 import numpy as np
 def print_statistics(data):
+    """
+    Prints data in a table
+    
+    INPUT:
+        'data' as numpy array
+    
+    OUTPUT:
+        Table of data with quarters, minimum and maximum
+    """
     Rownames=["1   ||","2   ||","3   ||","4   ||","All ||"]
     Columnames=([["Minimum","1. quart.","2. quart.","3. quart.","Maximum"],["========","=========","=========","=========","========="]])
     

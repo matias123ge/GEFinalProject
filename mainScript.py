@@ -25,7 +25,13 @@ print(welcome.center(80))
 menuBool = False #checks if data is loaded
 aggBool = False #checks which aggregation is active
 
-mainMenu = np.array(["Load data","Aggregate data", "Display statistics", "Visualize electricity consumption", "Show raw data", "Clear Aggregation", "Quit"]) #define options
+mainMenu = np.array(["Load data",
+                     "Aggregate data",
+                     "Display statistics",
+                     "Visualize electricity consumption",
+                     "Show raw data",
+                     "Clear Aggregation",
+                     "Quit"]) #define options
 while True:
     counter = 0 #counts the number of loops done by a specific while loop
     print("")
@@ -78,7 +84,10 @@ while True:
             -----------------------------------------
             """
             if fileBool == True:
-                fmodeMenu = np.array(["Forward fill", "Backward fill", "Drop", "Return to main menu"])
+                fmodeMenu = np.array(["Forward fill",
+                                      "Backward fill",
+                                      "Drop",
+                                      "Return to main menu"])
                 print("")
                 for i in range(len(fmodeMenu)):
                     print("{:d}. {:s}".format(i+1, fmodeMenu[i])) #print the fmode menu
@@ -136,11 +145,19 @@ while True:
             MENU LAYER 2 - Aggregation Menu
             -----------------------------------------
             """
-            aggModeMenu = np.array(["Hourly consumption", "Daily consumption", "Monthly consumption", "Average time-of-day consumption", "Return to main menu"]) #array for menu
-            aggPeriod = np.array(["hour","day","month", "hour of the day"]) #an array for period input
+            aggModeMenu = np.array(["Hourly consumption",
+                                    "Daily consumption",
+                                    "Monthly consumption",
+                                    "Average time-of-day consumption",
+                                    "Return to main menu"]) #array for menu
+            aggPeriod = np.array(["hour",
+                                  "day",
+                                  "month",
+                                  "hour of the day"]) #an array for period input
             while True:
                 for i in range(len(aggModeMenu)):
-                    print("{:d}. {:s}".format(i+1, aggModeMenu[i])) #print the fmode menu
+                    print("{:d}. {:s}".format(i+1,
+                          aggModeMenu[i])) #print the fmode menu
                 try:
                     aggModeInput = int(input("Please specify the number corresponding to the type of aggregation: ")) #user input for fmode
                     if choice < 0:
@@ -200,10 +217,12 @@ while True:
             else: #else ask the user if he/she is sure he/she want to plot the data
                 print("\nWARNING: Data sample is large! Data will probably take a while to plot.\n")
                 while True:
-                    areYouSure = np.array(["Yes","No"]) #Ask the user if he/she is sure that if he/she wants to print the non-aggrigated data
+                    areYouSure = np.array(["Yes",
+                                           "No"]) #Ask the user if he/she is sure that if he/she wants to print the non-aggrigated data
                     print("Are you sure you want to plot the data anyway?\n")
                     for i in range(len(areYouSure)):
-                        print("{:d}. {:s}".format(i+1, areYouSure[i])) #print 'Are you sure' menu
+                        print("{:d}. {:s}".format(i+1,
+                              areYouSure[i])) #print 'Are you sure' menu
                     print("")
                     
                     try: #get input from user
@@ -232,7 +251,8 @@ while True:
                 vOptArr = np.array(["Each zones seperately", "All zones combined", "Back to main menu"])
                 print("")
                 for i in range(len(vOptArr)):
-                    print("{:d}. {:s}".format(i+1, vOptArr[i])) #print visualization menu
+                    print("{:d}. {:s}".format(i+1,
+                          vOptArr[i])) #print visualization menu
                 
                 try: #get input from user
                     vOption = int(input("Please select the number corresponding to your desired visualization: "))
@@ -242,12 +262,10 @@ while True:
                         pass
                     
                     if vOption == 1: #plot zones seperately
-                        period = "Minute" #temp until aggregate works
                         plotType = 1 #specifies if the plot is for the zones seperately or combined
                         dataPlot(data,period,plotType) #use dataPlot subscript to plot the data
                         print("")
                     elif vOption == 2: #plot the zones combined
-                        period = "Minute" #temp until aggregate works
                         plotType = 2 
                         dataSum = np.sum(data,axis=1) #summing the data
                         dataPlot(dataSum,period,plotType) #use dataPlot subscript to plot the data
@@ -276,7 +294,6 @@ while True:
             print("")
         else:
             print("\nPlease load data first!\n")
-            pass
         
         """
         -----------------------------
