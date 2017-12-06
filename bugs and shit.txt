@@ -5,7 +5,8 @@ Udvidet help - on it!
 Time scale needs adjustment in statistics 
 Display raw data as panda
 Statstics chrashes after run aggregation/clear (maybe) - fixed (I think)
-Display active aggregation in main menu 
+Display active aggregation in main menu - fixed! And more...
 evt. More specific clear data message - maybe fixed?
+Are we sure that the dataLoad treates the loaded date properly?
 evt. jul 
 MORE MEMES

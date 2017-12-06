@@ -33,8 +33,18 @@ mainMenu = np.array(["Load data",
                      "Clear Aggregation",
                      "Quit"]) #define options
 while True:
+    print("============================\nMain Menu Info\n") #print main menu info
+    if menuBool == True: #print details about the loaded file and data
+        print("File named '" + filename + "' is loaded")
+        print("Data is loaded with fmode: '" + fmode + "'!")
+    else:
+        print("No data is loaded")
+    if aggBool == True:
+        print("Active Aggregation: '" + period + "'") #prints details about aggregation
+    else:
+        pass
+    print("============================")
     counter = 0 #counts the number of loops done by a specific while loop
-    print("")
     for i in range(len(mainMenu)):
         print("{:d}. {:s}".format(i+1, mainMenu[i])) #print options menu
         choice = 0
