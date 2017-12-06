@@ -24,7 +24,6 @@ welcome = "\n============================\nWelcome!\n===========================
 print(welcome.center(80))
 menuBool = False #checks if data is loaded
 aggBool = False #checks which aggregation is active
-
 mainMenu = np.array(["Load data",
                      "Aggregate data",
                      "Display statistics",
@@ -125,6 +124,7 @@ while True:
                             databackup = np.copy(data) #same
                             choice = -1
                             menuBool = True #a boolean that varifies that data has been loaded
+                            imSure = False #checks if you are certain you want to plot big data
                             break
                        
                         elif fmodeOption == len(fmodeMenu): #if the user chooses Return, break the while loop
@@ -188,6 +188,7 @@ while True:
                         aggOutPut = aggregate_measurements(tvec,data,period) #access aggregation subscribt
                         data = aggOutPut[1]
                         tvec = aggOutPut[0]
+                        imSure = False #checks if you are certain you want to plot big data
                         break
                     
                     elif aggModeInput == len(aggModeMenu): #go back to mainmenu
@@ -220,7 +221,9 @@ while True:
         """
     elif choice == 4:
         if menuBool == True:
-            if aggBool == True: #if there is aggrigated data, or the data sample is relatively small, just plot data
+            if imSure == True: #if you're already made it clear that you are sure, pass by this menu
+                pass
+            elif aggBool == True: #if there is aggrigated data, or the data sample is relatively small, just plot data
                 imSure = True #boolean that checks whether you are sure you want to plot the data
             elif len(data) < 100000:
                 imSure = True
@@ -318,6 +321,7 @@ while True:
             data = databackup #define the data as the backup data
             tvec = tvecbackup 
             aggBool = False #aggregation is now unapplied
+            imSure = False #checks if you are certain you want to plot big data
             print("\nAggregation is cleared!\n")
         else:
             print("\nThere is no data. Please load data first!\n")
