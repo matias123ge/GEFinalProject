@@ -6,7 +6,6 @@ Created on Sat Dec  2 12:12:11 2017
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.figure
 
 def dataPlot(data,period,plotType):
     """
