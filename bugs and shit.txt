@@ -17,3 +17,5 @@ plots:
 Aggregation menu in mains script, number 4, says "Averege time-of-day " (should be "Hour-of-the-day")?
 
 evt. del data med 1000 hvis data>x (for at konvertere fra wH til kWh)
+
+Overvej om vi skal gemme som dataframe, eller undervejs i subscribts
