@@ -260,7 +260,10 @@ while True:
                         raise ValueError
                     else:
                         pass
-                    
+                    if aggBool == False: #check whether there is an aggregation
+                        period = "minute"
+                    else:
+                        pass
                     if vOption == 1: #plot zones seperately
                         plotType = 1 #specifies if the plot is for the zones seperately or combined
                         dataPlot(data,period,plotType) #use dataPlot subscript to plot the data
