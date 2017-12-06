@@ -11,3 +11,7 @@ Are we sure that the dataLoad treates the loaded date properly?
 evt. jul
 Give an errormessage when 0 is pressed in the main menu
 MORE MEMES
+plots:
+    should Plot start at 0 for "month" aggregation?
+    Units says kWh? (should be wH i think/or divide be 1000)
+Aggregation menu in mainsscript, number 4, says "Averege time-of-day " (should be "Hour-of-the-day")?
