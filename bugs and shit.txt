@@ -8,5 +8,6 @@ Statstics chrashes after run aggregation/clear (maybe) - fixed (I think)
 Display active aggregation in main menu - fixed! And more...
 evt. More specific clear data message - maybe fixed?
 Are we sure that the dataLoad treates the loaded date properly?
-evt. jul 
+evt. jul
+Give an errormessage when 0 is pressed in the main menu
 MORE MEMES
