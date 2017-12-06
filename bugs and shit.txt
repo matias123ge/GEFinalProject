@@ -14,4 +14,6 @@ MORE MEMES
 plots:
     should Plot start at 0 for "month" aggregation?
     Units says kWh? (should be wH i think/or divide be 1000)
-Aggregation menu in mainsscript, number 4, says "Averege time-of-day " (should be "Hour-of-the-day")?
+Aggregation menu in mains script, number 4, says "Averege time-of-day " (should be "Hour-of-the-day")?
+
+evt. del data med 1000 hvis data>x (for at konvertere fra wH til kWh)
