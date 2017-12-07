@@ -12,7 +12,7 @@ def dataPlot(data,period,plotType):
     Plots given data as with a specified period.
     
     INPUT:
-        data as numpy array,
+        data as pd.dataFrame,
         period as type(str),
         plotType as type(int)
         
@@ -20,7 +20,7 @@ def dataPlot(data,period,plotType):
         plt.plot of data
     """
     plt.figure()
-    pandata = pd.DataFrame(data = data) #convert data to panda.dataframe 
+    pandata = pd.DataFrame(data = data) #convert data to panda.dataframe - temp
     if len(pandata) < 25: #if the number of measurements is lower than 25, we do bar plot
         pandata.plot(kind="bar", title="Power consumption per {:s}".format(period)) #do a barplot
     else:
@@ -33,7 +33,7 @@ def dataPlot(data,period,plotType):
         plt.xlabel("Time measured in days")
     else:
         plt.xlabel("Time measured in {:s}s".format(period))  #set name for x-axis
-    plt.ylabel("Power in kWh") #set name for y-axis
+    plt.ylabel("Power in Wh") #set name for y-axis
     
     if plotType == 1: #give a label to each zone
         legends = np.array(["Zone 1", "Zone 2", "Zone 3", "Zone 4"])

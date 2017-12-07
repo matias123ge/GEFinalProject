@@ -18,8 +18,8 @@ def load_measurements(filename, fmode):
         fmode as type(str)
     
     OUTPUT:
-        'data' as numpy array
-        'tvec' as numpy array
+        'data' as pd.dataFrame
+        'tvec' as pd.dataFrame
     """
     fmode = fmode.lower() #makes sure you can input "fmode" in both upper and lower case, in the mainScript
     matrix=pd.read_csv(filename, header=None) #read the csv file, and makes sure the first data row is not used as header for the DataFrame

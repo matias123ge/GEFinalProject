@@ -11,7 +11,7 @@ def print_statistics(data):
     Prints data in a table
     
     INPUT:
-        'data' as numpy array
+        'data' as pd.dataFrame
     
     OUTPUT:
         Table of data with quarters, minimum and maximum

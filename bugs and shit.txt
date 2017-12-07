@@ -2,19 +2,19 @@ BUGS til torsdag
 Ingen advarsel på display data efter man har aggregated - fixed!
 Visualization starts from 0  - fixed
 Udvidet help - on it!
-Time scale needs adjustment in statistics 
+Time scale needs adjustment in statistics - fixed
 Display raw data as panda fixed 
 Statstics chrashes after run aggregation/clear (maybe) - fixed (I think)
 Display active aggregation in main menu - fixed! And more...
 evt. More specific clear data message - maybe fixed?
-Are we sure that the dataLoad treats the loaded date properly?
+Are we sure that the dataLoad treats the loaded date properly? - (shouldn't the lenght of the array be shorter when selecting 'drop'?)
 evt. jul
-Give an errormessage when 0 is pressed in the main menu fixed
+Give an errormessage when 0 is pressed in the main menu - fixed
 MORE MEMES
 plots:
     should Plot start at 0 for "month" aggregation?
-    Units says kWh? (should be wH i think/or divide be 1000)
-Aggregation menu in mains script, number 4, says "Averege time-of-day " (should be "Hour-of-the-day")? fixed
+    Units says kWh? (should be wH i think/or divide be 1000) - it says Wh from now on
+Aggregation menu in mains script, number 4, says "Averege time-of-day " (should be "Hour-of-the-day")? - fixed
 
 evt. del data med 1000 hvis data>x (for at konvertere fra wH til kWh)
 
