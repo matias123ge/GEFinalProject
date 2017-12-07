@@ -173,7 +173,7 @@ while True:
                           aggModeMenu[i])) #print the fmode menu
                 try:
                     aggModeInput = int(input("Please specify the number corresponding to the type of aggregation: ")) #user input for fmode
-                    if choice < 0:
+                    if choice <= 0:
                         raise ValueError #raise a value error if input is negative
                     else:
                         pass
