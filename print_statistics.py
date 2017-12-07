@@ -32,7 +32,7 @@ def print_statistics(data,aggBool,period):
     #give the final dataframe (table) the correct header
     t.index.name="Zone||" #index name for extra crispyness 
 
-    if np.any(t>1000): #change the units if the value are large
+    if np.any(t>10000): #change the units if the value are large
         t = t/1000
         unit = "kWh"
         unit2 = "Kilo watt "
