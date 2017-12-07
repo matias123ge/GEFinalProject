@@ -1,0 +1,18 @@
+Help document
+
+Navigating the menu.
+All the menus are navigated using numbers given to each option in the menus.
+If you need to do otherwise, the program will let you know.
+Initially, you can only access 'Load data' and 'Quit', until data has been loaded.
+Once you have done this, a set of aggrigation options, statistics, plots, etc. are available to you.
+
+Load data function.
+In the load data function, you will be asked to write the filename of the data file you want to load (including the '.csv'-extension).
+Additionally, you can write 'return' in the console to return to the main menu.
+Notice: You are only able to load files of the type '.csv'.
+
+Aggregation menu.
+You are able to aggregate your data to look at hourly, daily, monthly and hourly average electricity consumption.
+This data can be plotted using the 'Visualize electricity consumption'.
+
+Hidden functions ???
