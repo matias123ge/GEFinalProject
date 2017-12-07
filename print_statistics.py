@@ -39,7 +39,7 @@ def print_statistics(data,aggBool,period):
     else:
         unit = "Wh"
         unit2 = "Watt "
-     print("===============================================================\n",t,
+    print("===============================================================\n",t,
           "\n===============================================================")
     
     #print the units of the table and method of aggregation

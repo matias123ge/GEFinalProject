@@ -19,7 +19,7 @@ def dataPlot(data,period,plotType):
     OUTPUT:
         plt.plot of data
     """
-    plt.figure() #
+    plt.figure() #rearranges the plot
     pandata = data.copy() #copy the input data to a seperate object
     if np.any(pandata>10000): #if there a big numbers in the data, plot as kWh instead of Wh
         pandata = pandata/1000
