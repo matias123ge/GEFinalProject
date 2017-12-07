@@ -60,6 +60,8 @@ def load_measurements(filename, fmode):
         matrix=np.delete(matrix,errormatrix[0],axis=0) #deletes all rows with corrupted elements
         
     #split tvec into Nx6 tvec matrix and Nx4 
+    error=len(errormatrix)
+    print("There has been changed {} items in correspondance with the selected loading mode".format(error))
     tvec=matrix[:,[0,1,2,3,4,5]]
     data=matrix[:,[6,7,8,9]]
     header=np.array(["Year","Month","Day","Hour","Minute","Seconds"])
