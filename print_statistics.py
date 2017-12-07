@@ -34,14 +34,22 @@ def print_statistics(data,aggBool,period):
     print("===============================================================\n",t,
           "\n===============================================================")
     
+    if np.any(t>1000):
+        t = t/1000
+        unit = "kWh"
+        unit2 = "Kilo watt "
+    else:
+        unit = "Wh"
+        unit2 = "Watt "
+        
     #print the units of the table and method of aggregation
     if aggBool == False: #no aggregation
-        print("unit: Watt hours [Wh]\ntimeinterval: Consumption per minute [Wh/min]\n=========================\n")
+        print("unit: {}hours [{}]\ntimeinterval: Consumption per minute [{}/min]\n=========================\n".format(unit2,unit,unit))
     elif period == "hour of the day":
-        print("unit: Watt hours [Wh]\ntimeinterval: Consumption per hour [Wh/h]\n=========================\n")
+        print("unit: {}hours [{}]\ntimeinterval: Consumption per hour [{}/h]\n=========================\n".format(unit2,unit,unit))
     elif period == "average daily consumption":
-        print("units: Watt hours [Wh]\ntimeinterval: Average consumption per day [Wh/day]\n=========================\n")
+        print("units: {}hours [{}]\ntimeinterval: Average consumption per day [{}/day]\n=========================\n".format(unit2,unit,unit))
     else:
-        print("unit: Watt hours [Wh]\ntimeinterval: Consumption per {} [Wh/{}]\n=========================\n".format(period,period))
+        print("unit: {}hours [{}]\ntimeinterval: Consumption per {} [{}/{}]\n=========================\n".format(unit2,unit,period,unit,period))
 
     return
