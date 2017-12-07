@@ -304,9 +304,13 @@ while True:
     elif choice == 5:
         if menuBool == True: #prints raw data, if any is loaded
             print("\n============================\nRaw Data\n============================\n")
-            print(data)
+            header=("Zone1","Zone2","Zone3","Zone4")
+            header2=("Year","Month","Day","Hour","Minute","Second")
+            data1=pd.DataFrame(data,columns=header)
+            print(data1)
             print("\n============================\nRaw Time Vector\n============================\n")
-            print(tvec)
+            tvec1=pd.DataFrame(tvec,columns=header2)
+            print(tvec1)
             print("")
         else:
             print("\nPlease load data first!\n")
