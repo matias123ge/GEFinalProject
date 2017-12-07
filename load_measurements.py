@@ -64,8 +64,6 @@ def load_measurements(filename, fmode):
     data=matrix[:,[6,7,8,9]]
     header=np.array(["Year","Month","Day","Hour","Minute","Seconds"])
     header1=np.array(["Zone1","Zone2","Zone3","Zone4"])
-    tvec=pd.DataFrame(tvec)
-    data=pd.DataFrame(data)
-    tvec.columns=header
-    data.columns=header1
+    tvec=pd.DataFrame(tvec, columns=header)
+    data=pd.DataFrame(data, columns=header1)
     return (tvec, data)

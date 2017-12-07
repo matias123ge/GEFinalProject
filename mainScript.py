@@ -120,8 +120,8 @@ while True:
                             
                             print("Data file loaded!\nLoad time: {:f} seconds.\n============================\n".format(stop)) #write loading time
                             aggBool = False #when loading new data, the aggregation is automatically cleared (obviously)
-                            tvecbackup = np.copy(tvec) #create backups for reset option
-                            databackup = np.copy(data) #same
+                            tvecbackup = tvec.copy() #create backups for reset option
+                            databackup = data.copy() #same
                             choice = -1
                             menuBool = True #a boolean that varifies that data has been loaded
                             imSure = False #checks if you are certain you want to plot big data
@@ -165,7 +165,7 @@ while True:
                                   "day",
                                   "month",
                                   "hour of the day",
-                                  "Average daily consumption"]) #an array for period input
+                                  "Average Daily Consumption"]) #an array for period input
             while True:
                 for i in range(len(aggModeMenu)):
                     print("{:d}. {:s}".format(i+1,
