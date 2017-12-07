@@ -27,8 +27,12 @@ def dataPlot(data,period,plotType):
         pandata.plot(title="Power consumption per {:s}".format(period)) #do a lineplot
     
     #fill label
-    plt.xlabel("Time in {:s}s".format(period))  #set name for x-axis
-    #plt.xticks 
+    if period == "hour of the day": #do labels for exception
+        plt.xlabel("Time measured in hours")
+    elif period == "average daily consumption": #do labels for exception
+        plt.xlabel("Time measured in days")
+    else:
+        plt.xlabel("Time measured in {:s}s".format(period))  #set name for x-axis
     plt.ylabel("Power in kWh") #set name for y-axis
     
     if plotType == 1: #give a label to each zone
