@@ -31,17 +31,17 @@ def print_statistics(data,aggBool,period):
     ["========","=========","=========","=========","========="]])
     #give the final dataframe (table) the correct header
     t.index.name="Zone||" #index name for extra crispyness 
+    print("===============================================================\n",t,
+          "\n===============================================================")
     
-    if np.any(t>10000): #show the table with unit kWh instead of Wh, if data values are large
+    if np.any(t>1000):
         t = t/1000
         unit = "kWh"
         unit2 = "Kilo watt "
     else:
         unit = "Wh"
         unit2 = "Watt "
-    
-    print("===============================================================\n",t,
-          "\n===============================================================")
+        
     #print the units of the table and method of aggregation
     if aggBool == False: #no aggregation
         print("unit: {}hours [{}]\ntimeinterval: Consumption per minute [{}/min]\n=========================\n".format(unit2,unit,unit))
