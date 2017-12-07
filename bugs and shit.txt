@@ -3,13 +3,13 @@ Ingen advarsel på display data efter man har aggregated - fixed!
 Visualization starts from 0  - fixed
 Udvidet help - on it!
 Time scale needs adjustment in statistics 
-Display raw data as panda fixed
+Display raw data as panda fixed 
 Statstics chrashes after run aggregation/clear (maybe) - fixed (I think)
 Display active aggregation in main menu - fixed! And more...
 evt. More specific clear data message - maybe fixed?
 Are we sure that the dataLoad treats the loaded date properly?
 evt. jul
-Give an errormessage when 0 is pressed in the main menu
+Give an errormessage when 0 is pressed in the main menu fixed
 MORE MEMES
 plots:
     should Plot start at 0 for "month" aggregation?
@@ -18,7 +18,7 @@ Aggregation menu in mains script, number 4, says "Averege time-of-day " (should 
 
 evt. del data med 1000 hvis data>x (for at konvertere fra wH til kWh)
 
-Overvej om vi skal gemme som dataframe, eller undervejs i subscribts
-HEJ
+Overvej om vi skal gemme som dataframe, eller undervejs i subscribts fixed
+
 Overvej om Daily consmption skal være gennemsnitligt i stedet (der er flere måneder med 30 dage end 31 fx) fixed
 lav en beskrivelse til aggregation muligheder, måske flere aggregation muligheder?
