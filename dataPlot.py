@@ -19,8 +19,13 @@ def dataPlot(data,period,plotType):
     OUTPUT:
         plt.plot of data
     """
-    plt.figure()
-    pandata = pd.DataFrame(data = data) #convert data to panda.dataframe - temp
+    plt.figure() #
+    pandata = data.copy() #copy the input data to a seperate object
+    if np.any(pandata>10000): #if there a big numbers in the data, plot as kWh instead of Wh
+        pandata = pandata/1000
+        ylab = "kWh"
+    else:
+        ylab = "Wh"
     if len(pandata) < 25: #if the number of measurements is lower than 25, we do bar plot
         pandata.plot(kind="bar", title="Power consumption per {:s}".format(period)) #do a barplot
     else:
@@ -33,7 +38,7 @@ def dataPlot(data,period,plotType):
         plt.xlabel("Time measured in days")
     else:
         plt.xlabel("Time measured in {:s}s".format(period))  #set name for x-axis
-    plt.ylabel("Power in Wh") #set name for y-axis
+    plt.ylabel("Power in {}".format(ylab)) #set name for y-axis
     
     if plotType == 1: #give a label to each zone
         legends = np.array(["Zone 1", "Zone 2", "Zone 3", "Zone 4"])
