@@ -27,7 +27,7 @@ def aggregate_measurements(tvec,data,period):
     complete=tvec.join(data)
     if period=="hour":
         #Group by hour
-        complete1=complete.groupby(["Year","Month","Day","Hour"]).sum()
+        complete1=complete.groupby(["Hour"]).sum()
         tvec_a=complete1
         #Display the data per time unit
         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
