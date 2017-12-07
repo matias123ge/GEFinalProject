@@ -2,12 +2,7 @@ BUGS til torsdag
 Udvidet help - on it!
 evt. jul
 MORE MEMES
-plots:
-    should Plot start at 0 for "month" aggregation?
-    Units says kWh? (should be wH i think/or divide be 1000) - it says Wh from now on
 
-
-evt. del data med 1000 hvis data>x (for at konvertere fra wH til kWh)
 
 
 
