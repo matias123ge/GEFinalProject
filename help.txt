@@ -12,7 +12,9 @@ Additionally, you can write 'return' in the console to return to the main menu.
 Notice: You are only able to load files of the type '.csv'.
 
 Aggregation menu.
-You are able to aggregate your data to look at hourly, daily, monthly and hourly average electricity consumption.
+You are able to aggregate your data to look at hourly, daily, monthly, hourly average and daily average electricity consumption.
+The first three functions display the total electricity consumption for the chosen parameter over the entire data set. 
+The last two display the average use of electricity per hour or per day, for the total data set. 
 This data can be plotted using the 'Visualize electricity consumption'.
 
 Hidden functions ???
