@@ -317,7 +317,7 @@ while True:
         else:
             print("\nPlease load data first!\n")
         
-        
+
         """
         -----------------------------
         MENU LAYER 1 - Clear Aggregation
