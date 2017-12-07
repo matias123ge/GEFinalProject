@@ -16,7 +16,7 @@ def print_statistics(data):
     OUTPUT:
         Table of data with quarters, minimum and maximum
     """
-    StatData=data
+    StatData=data.copy()
     w=StatData.sum(axis=1) #extra column for all zones (zones summed)
     w=pd.DataFrame(w,columns=["All ||"]) #give it a header
     w=w.quantile([0,0.25,0.5,0.75,1]) #find the percintiles for all zones column
