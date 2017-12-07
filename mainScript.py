@@ -4,7 +4,7 @@ Created on Thu Nov 23 14:19:58 2017
 
 @author:
 """
-
+import math
 import numpy as np
 import pandas as pd
 import time
@@ -49,8 +49,8 @@ while True:
         choice = 0
     while not(np.any(choice == np.arange(len(mainMenu))+1)):
         try:
-            choice = float(input("Please choose the number from the menu item: ")) #Choose in the menu. 
-            if (choice < 0) or (choice > len(mainMenu)):
+            choice = math.floor(float(input("Please choose the number from the menu item: "))) #Choose in the menu. 
+            if (choice <= 0) or (choice > len(mainMenu)):
                 raise ValueError #raise a value error if input is negative
             else:
                 pass
@@ -304,18 +304,18 @@ while True:
         -----------------------------------------
         """
     elif choice == 5:
-        if menuBool == True: #prints raw data, if any is loaded
+        if menuBool == True and aggBool== True: #prints raw data, if any is loaded
             print("\n============================\nRaw Data\n============================\n")
-            header=("Zone1","Zone2","Zone3","Zone4")
-            header2=("Year","Month","Day","Hour","Minute","Second")
-            data1=pd.DataFrame(data,columns=header)
-            print(data1)
+            print(data)
+        elif menuBool==True:
+            print("\n============================\nRaw Data\n============================\n")
+            print(data)
             print("\n============================\nRaw Time Vector\n============================\n")
-            tvec1=pd.DataFrame(tvec,columns=header2)
-            print(tvec1)
+            print(tvec)
             print("")
         else:
             print("\nPlease load data first!\n")
+        
         
         """
         -----------------------------

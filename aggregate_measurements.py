@@ -20,12 +20,7 @@ def aggregate_measurements(tvec,data,period):
     OUTPUT:
         Aggregated data of 'tvec' and 'data' as numpy array
     """
-    #Define headers
-    header=np.array(["Year","Month","Day","Hour","Minutes","Seconds"])
-    header2=np.array(["Zone1","Zone2","Zone3","Zone4"])
-    #Convert data to DataFrame units. 
-    tvec=pd.DataFrame(tvec,columns=header)
-    data=pd.DataFrame(data, columns=header2)
+   
     #Make sure period is case insensitive
     period=period.lower()
     #Join Dataframes so data stays consistent.
@@ -68,8 +63,6 @@ def aggregate_measurements(tvec,data,period):
     print("---------------------------------------------------")
     print(" ")
     #Convert to array for use in other functions. 
-    tvec_a=np.array(tvec_a)
-    data_a=np.array(data_a)
     return (tvec_a,data_a)
 
         

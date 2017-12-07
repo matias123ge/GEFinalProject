@@ -62,5 +62,10 @@ def load_measurements(filename, fmode):
     #split tvec into Nx6 tvec matrix and Nx4 
     tvec=matrix[:,[0,1,2,3,4,5]]
     data=matrix[:,[6,7,8,9]]
-    
+    header=np.array(["Year","Month","Day","Hour","Minute","Seconds"])
+    header1=np.array(["Zone1","Zone2","Zone3","Zone4"])
+    tvec=pd.DataFrame(tvec)
+    data=pd.DataFrame(data)
+    tvec.columns=header
+    data.columns=header1
     return (tvec, data)
