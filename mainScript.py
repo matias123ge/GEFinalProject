@@ -163,7 +163,8 @@ while True:
                                     "Average hourly consumption",
                                     "Average daily consumption",
                                     "Return to main menu"]) #array for menu
-            aggPeriod = np.array(["minute","hour",
+            aggPeriod = np.array(["minute",
+                                  "hour",
                                   "day",
                                   "month",
                                   "hour of the day",
