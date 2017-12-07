@@ -156,13 +156,14 @@ while True:
             MENU LAYER 2 - Aggregation Menu
             -----------------------------------------
             """
-            aggModeMenu = np.array(["Hourly consumption",
+            aggModeMenu = np.array(["Consumption per minute",
+                                    "Hourly consumption",
                                     "Daily consumption",
                                     "Monthly consumption",
                                     "Average hourly consumption",
                                     "Average daily consumption",
                                     "Return to main menu"]) #array for menu
-            aggPeriod = np.array(["hour",
+            aggPeriod = np.array(["minute","hour",
                                   "day",
                                   "month",
                                   "hour of the day",

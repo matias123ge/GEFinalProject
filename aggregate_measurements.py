@@ -25,6 +25,12 @@ def aggregate_measurements(tvec,data,period):
     period=period.lower()
     #Join Dataframes so data stays consistent.
     complete=tvec.join(data)
+    if period=="minute":
+        #Group by hour
+        complete1=complete
+        tvec_a=complete1
+        #Display the data per time unit
+        data_a=complete1
     if period=="hour":
         #Group by hour
         complete1=complete.groupby(["Hour"]).sum()
