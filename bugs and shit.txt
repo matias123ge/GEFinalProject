@@ -19,6 +19,6 @@ Aggregation menu in mains script, number 4, says "Averege time-of-day " (should 
 evt. del data med 1000 hvis data>x (for at konvertere fra wH til kWh)
 
 Overvej om vi skal gemme som dataframe, eller undervejs i subscribts
-
+HEJ
 Overvej om Daily consmption skal være gennemsnitligt i stedet (der er flere måneder med 30 dage end 31 fx) fixed
 lav en beskrivelse til aggregation muligheder, måske flere aggregation muligheder?
