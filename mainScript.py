@@ -165,7 +165,7 @@ while True:
                                   "day",
                                   "month",
                                   "hour of the day",
-                                  "average daily"]) #an array for period input
+                                  "Average daily consumption"]) #an array for period input
             while True:
                 for i in range(len(aggModeMenu)):
                     print("{:d}. {:s}".format(i+1,

@@ -50,7 +50,7 @@ def aggregate_measurements(tvec,data,period):
          #Let the user know that these values are averages, not sums in the time interval
          print("These are the mean values per hour:")
          print(" ")
-    if period=="average daily":
+    if period=="Average Daily Consumption":
         complete1=complete.groupby("Day").mean()
         tvec_a=complete1
         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
