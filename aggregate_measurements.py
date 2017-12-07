@@ -26,38 +26,40 @@ def aggregate_measurements(tvec,data,period):
     #Join Dataframes so data stays consistent.
     complete=tvec.join(data)
     if period=="minute":
-        #Group by hour
+        #Group by minute(the data displayed is the same as the data loaded originally)
         complete1=complete.copy()
         tvec_a=complete1
         #Display the data per time unit
-        data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
+        data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]#Display the data
         data_a.index.name="Minute"
     if period=="hour":
-        #Group by hour
-        complete1=complete.groupby(["Hour"]).sum()
+        #Group by hour for aggregation
+        complete1=complete.groupby(["Hour"]).sum() #sum the hours
         tvec_a=complete1
         #Display the data per time unit
         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
         
     if period=="day":
+        #Group by day for aggregation
         complete1=complete.groupby("Day").sum()
         tvec_a=complete1
         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
     
     if period=="month":
+        #Group by month for aggregation
         complete1=complete.groupby("Month").sum()
         tvec_a=complete1
         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
           
     if period=="hour of the day":
-        # index1=np.array(["0:00-1:00","1:00-2:00","2:00-3:00","3:00-4:00","4:00-5:00","5:00-6:00","6:00-7:00","7:00-8:00","8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00","20:00-21:00","21:00-22:00","22:00-23:00","23:00-00:00"])
-         complete1=complete.groupby("Hour").mean() #This is all the hour summed
+         complete1=complete.groupby("Hour").mean() #This the average (mean) of all the electricity usage per hour
          tvec_a=complete1
          data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
          #Let the user know that these values are averages, not sums in the time interval
          print("These are the mean values per hour:")
          print(" ")
     if period=="average daily consumption":
+        #Same as above except for daily average instead of hour
         complete1=complete.groupby("Day").mean()
         tvec_a=complete1
         data_a=complete1[["Zone1","Zone2","Zone3","Zone4"]]
