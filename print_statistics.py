@@ -16,12 +16,12 @@ def print_statistics(data):
     OUTPUT:
         Table of data with quarters, minimum and maximum
     """
-    
-    w=data.sum(axis=1) #extra column for all zones (zones summed)
+    StatData=data
+    w=StatData.sum(axis=1) #extra column for all zones (zones summed)
     w=pd.DataFrame(w,columns=["All ||"]) #give it a header
     w=w.quantile([0,0.25,0.5,0.75,1]) #find the percintiles for all zones column
-    data.columns=["1   ||","2   ||","3   ||","4   ||"]  #give a header to zone 1,2,3,4
-    t=(data.quantile([0,0.25,0.5,0.75,1])) #find the percentiles
+    StatData.columns=["1   ||","2   ||","3   ||","4   ||"]  #give a header to zone 1,2,3,4
+    t=(StatData.quantile([0,0.25,0.5,0.75,1])) #find the percentiles
     t=(t.join(w)).T #join zone 1,2,3,4 and "all" and transpose it
     t.columns=([["Minimum",
                  "1. quart.",
