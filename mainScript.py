@@ -158,12 +158,14 @@ while True:
             aggModeMenu = np.array(["Hourly consumption",
                                     "Daily consumption",
                                     "Monthly consumption",
-                                    "Average time-of-day consumption",
+                                    "Average hourly consumption",
+                                    "Average daily consumption",
                                     "Return to main menu"]) #array for menu
             aggPeriod = np.array(["hour",
                                   "day",
                                   "month",
-                                  "hour of the day"]) #an array for period input
+                                  "hour of the day",
+                                  "average daily"]) #an array for period input
             while True:
                 for i in range(len(aggModeMenu)):
                     print("{:d}. {:s}".format(i+1,
@@ -335,3 +337,4 @@ while True:
         print(byebye.center(80))
         time.sleep(1)
         break
+    
