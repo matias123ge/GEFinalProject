@@ -125,6 +125,7 @@ while True:
                             choice = -1
                             menuBool = True #a boolean that varifies that data has been loaded
                             imSure = False #checks if you are certain you want to plot big data
+                            period = "" #define a blank period for the aggregation
                             break
                        
                         elif fmodeOption == len(fmodeMenu): #if the user chooses Return, break the while loop
@@ -211,7 +212,7 @@ while True:
         """
     elif choice == 3:
         if menuBool == True:
-            print_statistics(data) #printing the statistics table
+            print_statistics(data,aggBool,period) #printing the statistics table
         else:
             print("\nPlease load data first!\n")
             pass
@@ -328,6 +329,7 @@ while True:
             tvec = tvecbackup 
             aggBool = False #aggregation is now unapplied
             imSure = False #checks if you are certain you want to plot big data
+            period = ""
             print("\nAggregation is cleared!\n")
         else:
             print("\nThere is no data. Please load data first!\n")

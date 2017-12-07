@@ -6,7 +6,7 @@ Created on Thu Nov 30 13:43:42 2017
 """
 import pandas as pd
 import numpy as np
-def print_statistics(data):
+def print_statistics(data,aggBool,period):
     """
     Prints data in a table
     
@@ -31,18 +31,17 @@ def print_statistics(data):
     ["========","=========","=========","=========","========="]])
     #give the final dataframe (table) the correct header
     t.index.name="Zone||" #index name for extra crispyness 
-    print("===============================================================\n",t)
+    print("===============================================================\n",t,
+          "\n===============================================================")
     
-    if "period" not in globals():#no aggregation
-        print("\n===============================================================\nunit=Watt-hour\ntimescale=Consumption/min\n=========================")
-    elif period=="Consumption per hour":
-        print("unit=kWh\ntimescale=Consumption/hour")
-    elif period=="Consumption per day":
-        print("unit=kWh\ntimescale=Consumption/day")
-    elif period=="Consumption per month":
-        print("unit=kWh\ntimescale=Consumption/month")
-    elif period=="Hour-of-day consumption":
-        print("unit=kWh\ntimescale=average hourly consumption") 
-   
-    
+    #print the units of the table and method of aggregation
+    if aggBool == False: #no aggregation
+        print("unit: Watt hours [Wh]\ntimeinterval: Consumption per minute [Wh/min]\n=========================\n")
+    elif period == "hour of the day":
+        print("unit: Watt hours [Wh]\ntimeinterval: Consumption per hour [Wh/h]\n=========================\n")
+    elif period == "average daily consumption":
+        print("units: Watt hours [Wh]\ntimeinterval: Average consumption per day [Wh/day]\n=========================\n")
+    else:
+        print("unit: Watt hours [Wh]\ntimeinterval: Consumption per {} [Wh/{}]\n=========================\n".format(period,period))
+
     return
